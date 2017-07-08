@@ -22,6 +22,20 @@ networkInterface.use([{
   }
 }]);
 
+networkInterface.useAfter([{
+  applyAfterware({ response: { headers } }, next) {
+    const token = headers.get('x-token');
+    const refreshToken = headers.get('x-refresh-token');
+    if (token) {
+      localStorage.setItem('token', token);
+    }
+    if (refreshToken) {
+      localStorage.setItem('refreshToken', refreshToken);
+    }
+    next();
+  }
+}]);
+
 const client = new ApolloClient({
   networkInterface: networkInterface
 });
