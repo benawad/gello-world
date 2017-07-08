@@ -56,7 +56,7 @@ class Register extends React.Component {
           Admin?
         </Checkbox>
         <br />
-        <Button onClick={() => this.onSubmit()} type="primary">Primary</Button>
+        <Button onClick={() => this.onSubmit()} type="primary">Register</Button>
       </div>
     );
   }
