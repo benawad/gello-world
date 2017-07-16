@@ -8,7 +8,7 @@ import 'antd/dist/antd.css';
 import Routes from './routes';
 
 const networkInterface = createNetworkInterface({
-  uri: 'http://localhost:3000/graphql',
+  uri: '/graphql',
 });
 
 networkInterface.use([{
