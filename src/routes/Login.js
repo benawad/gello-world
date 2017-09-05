@@ -15,12 +15,18 @@ class Login extends React.Component {
   }
 
   onSubmit = async () => {
-    const response = await this.props.mutate({
-      variables: this.state,
-    });
-    const { token, refreshToken } = response.data.login;
-    localStorage.setItem('token', token);
-    localStorage.setItem('refreshToken', refreshToken);
+    try {
+      const response = await this.props.mutate({
+        variables: this.state,
+      });
+      const { token, refreshToken } = response.data.login;
+      localStorage.setItem('token', token);
+      localStorage.setItem('refreshToken', refreshToken);
+      console.log('login worked!');
+    } catch (e) {
+      console.log('login failed!');
+      console.log(e);
+    }
   }
 
   render() {

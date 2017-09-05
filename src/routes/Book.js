@@ -17,11 +17,7 @@ const Book = ({ data }) => {
     return <Redirect to={{ pathname: "/404" }} />;
   }
 
-  return (
-    <h1>
-      {getBook.title}
-    </h1>
-  );
+  return <h1>{getBook.title}</h1>;
 };
 
 const bookQuery = gql`
