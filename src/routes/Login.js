@@ -6,57 +6,55 @@ class Login extends React.Component {
   state = {
     email: '',
     password: '',
-  }
+  };
 
-  onChange = (e) => {
+  onChange = e => {
     this.setState({
       [e.target.name]: e.target.value,
     });
-  }
+  };
 
   onSubmit = async () => {
     try {
       const response = await this.props.mutate({
         variables: this.state,
       });
-      const { token, refreshToken } = response.data.login;
-      localStorage.setItem('token', token);
-      localStorage.setItem('refreshToken', refreshToken);
       console.log('login worked!');
     } catch (e) {
       console.log('login failed!');
       console.log(e);
     }
-  }
+  };
 
   render() {
     return (
       <div>
         <Input
-          name='email'
-          placeholder='Email'
+          name="email"
+          placeholder="Email"
           onChange={e => this.onChange(e)}
-          value={this.state.email} />
+          value={this.state.email}
+        />
         <Input
-          name='password'
-          placeholder='Password'
-          type='password'
+          name="password"
+          placeholder="Password"
+          type="password"
           onChange={e => this.onChange(e)}
-          value={this.state.password} />
+          value={this.state.password}
+        />
         <br />
-        <Button onClick={() => this.onSubmit()} type="primary">Login</Button>
+        <Button onClick={() => this.onSubmit()} type="primary">
+          Login
+        </Button>
       </div>
     );
   }
 }
 
 const mutation = gql`
-mutation ($email: String!, $password: String!) {
-  login(email: $email, password: $password) {
-    token
-    refreshToken
+  mutation($email: String!, $password: String!) {
+    login(email: $email, password: $password)
   }
-}
 `;
 
 export default graphql(mutation)(Login);
