@@ -22,6 +22,7 @@ const BasicAutocomplete = ({ items, onChange }) => (
                   !inputValue ||
                   i.title.toLowerCase().includes(inputValue.toLowerCase())
               )
+              .slice(0, 10)
               .map((book, index) => (
                 <div
                   {...getItemProps({ item: book.title })}

@@ -19,7 +19,7 @@ const Items = ({
 }) =>
   loading ? null : (
     <div>
-      {searchBooks.map(({ title, id }, index) => (
+      {searchBooks.slice(0, 10).map(({ title, id }, index) => (
         <div
           {...getItemProps({ item: title })}
           key={id}
