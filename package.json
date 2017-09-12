@@ -9,6 +9,7 @@
     "antd": "^2.11.2",
     "axios": "^0.16.2",
     "cloudinary-react": "^1.0.4",
+    "downshift": "^1.5.0",
     "jwt-decode": "^2.2.0",
     "react": "^15.6.1",
     "react-apollo": "^1.4.3",
