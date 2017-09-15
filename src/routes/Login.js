@@ -29,6 +29,10 @@ class Login extends React.Component {
     }
   }
 
+  facebookLogin = () => {
+    window.location = 'http://localhost:3000/flogin';
+  }
+
   render() {
     return (
       <div>
@@ -44,7 +48,8 @@ class Login extends React.Component {
           onChange={e => this.onChange(e)}
           value={this.state.password} />
         <br />
-        <Button onClick={() => this.onSubmit()} type="primary">Login</Button>
+        <Button onClick={this.onSubmit} type="primary">Login</Button>
+        <Button onClick={this.facebookLogin} type="primary">Login with Facebook</Button>
       </div>
     );
   }
