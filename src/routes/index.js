@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import decode from "jwt-decode";
 
 import Auth from "./Auth";
+import Home from "./Home";
 import Login from "./Login";
 import Register from "./Register";
 import Book from "./Book";
@@ -54,6 +55,7 @@ export default () => (
       <Route exact path="/404" component={PageNotFound} />
       <Route exact path="/search" component={Search} />
       <Route exact path="/search2" component={Search2} />
+      <Route exact path="/home" component={Home} />
       <Route exact path="/upload" render={props => <Upload {...props} />} />
       <Route
         exact
