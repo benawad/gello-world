@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Input, Checkbox } from "antd";
+import { message, Button, Input, Checkbox } from "antd";
 import { gql, graphql } from "react-apollo";
 
 class Register extends React.Component {
@@ -7,7 +7,8 @@ class Register extends React.Component {
     username: "",
     email: "",
     password: "",
-    isAdmin: false
+    isAdmin: false,
+    errors: {}
   };
 
   onChange = e => {
@@ -26,8 +27,23 @@ class Register extends React.Component {
     const response = await this.props.mutate({
       variables: this.state
     });
-    console.log("register worked!");
     console.log(response);
+    const { register } = response.data;
+    if (register.ok) {
+      // register was successful
+      // redirect to different page or something
+    } else {
+      // message.error(register.errors[0].message);
+      // [{path, message}]
+      // {username: 'needs to be between 5 and 10'},
+      // pv = {}, cv = {path, message}
+      this.setState({
+        errors: register.errors.reduce((pv, cv) => {
+          pv[cv.path] = cv.message;
+          return pv;
+        }, {})
+      });
+    }
   };
 
   render() {
@@ -39,6 +55,7 @@ class Register extends React.Component {
           onChange={e => this.onChange(e)}
           value={this.state.username}
         />
+        {this.state.errors["username"]}
         <Input
           name="email"
           placeholder="Email"
@@ -81,7 +98,14 @@ const mutation = gql`
       password: $password
       isAdmin: $isAdmin
     ) {
-      id
+      ok
+      errors {
+        path
+        message
+      }
+      user {
+        id
+      }
     }
   }
 `;
